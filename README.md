@@ -3,7 +3,7 @@
 
 这个项目是课程作业，用了ES6语法和面向对象技术。
 
-###功能
+### 功能
 
 - 用户可以选择加法、减法和混合三种算式
 
@@ -13,4 +13,6 @@
 
 - 可以在生成试题之后下载 PDF 试题
 
-###UML类图
+### UML类图
+
+![uml](https://github.com/zhpjy/OnlineCalculatePractice/raw/master/readmeImg/uml.png)
