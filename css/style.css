@@ -1,0 +1,32 @@
+#btn-download {
+  display: none; }
+
+.main {
+  padding-top: 3%; }
+  .main fieldset {
+    margin-bottom: 5%; }
+
+.question {
+  font-size: 1.2rem; }
+  .question label {
+    font-size: 1.1rem;
+    padding: 0; }
+  .question input {
+    border: 0;
+    outline: none;
+    padding: 0; }
+  .question span {
+    color: limegreen;
+    display: inline;
+    visibility: hidden; }
+
+#btnSubExercise {
+  margin-top: 7%; }
+
+#alerts-container {
+  margin-top: 5%; }
+
+.footer {
+  padding: 5%; }
+
+/*# sourceMappingURL=style.css.map */
