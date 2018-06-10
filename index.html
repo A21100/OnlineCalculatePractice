@@ -11,7 +11,7 @@
 <body>
 <div class="navbar navbar-dark bg-primary">
     <div class="container">
-        <a href="#" class="navbar-brand">在线计算题练习</a>
+        <a href="#" class="navbar-brand" id="btn-return">在线计算题练习</a>
         <button class="btn btn-secondary btn-lg" id="btn-download">下载试题</button>
     </div>
 </div>
@@ -36,8 +36,36 @@
             <div class="form-check">
                 <label class="form-check-label">
                     <input type="radio" class="form-check-input type-select" name="optionsRadios" id="optionsRadios3"
-                           value="add-and-sub" checked="">
+                           value="all-mul">
+                    纯乘法
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input type-select" name="optionsRadios" id="optionsRadios4"
+                           value="all-div">
+                    纯除法
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input type-select" name="optionsRadios" id="optionsRadios5"
+                           value="add-and-sub">
                     加减混合
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input type-select" name="optionsRadios" id="optionsRadios6"
+                           value="mul-and-div">
+                    乘除混合
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input type-select" name="optionsRadios" id="optionsRadios7"
+                           value="all-mix" checked="">
+                    加减乘除混合
                 </label>
             </div>
         </fieldset>

@@ -15,6 +15,7 @@ class BinaryOperation {
         console.log("override this function, function name calculate");
     }
 
+    //检查算式是否符合要求
     checkingCalculation() {
         if (this.value <= this.valueUpper && this.value >= this.valueLower) {
             return true;
@@ -64,7 +65,6 @@ class AddBinaryOperation extends BinaryOperation {
     constructor() {
         super();
         this.operator = "+";
-        // this.generateBinaryOperation();
     }
 
     calculate() {
@@ -88,11 +88,75 @@ class SubBinaryOperation extends BinaryOperation {
     constructor() {
         super();
         this.operator = "-";
-        // this.generateBinaryOperation();
     }
 
     calculate() {
         this.value = this.leftOperand - this.rightOperand;
+    }
+
+    equals(bo) {
+        if (this.operator != bo.operator) {
+            return false
+        }
+        if ((this.leftOperand != bo.leftOperand) || (this.rightOperand != bo.rightOperand)) {
+            return false;
+        }
+        return true;
+    }
+}
+
+//乘法算式类
+class MulBinaryOperation extends BinaryOperation {
+    constructor() {
+        super();
+        this.operator = "×";
+    }
+
+    calculate() {
+        this.value = this.leftOperand * this.rightOperand;
+    }
+
+    equals(bo) {
+        if (this.operator != bo.operator) {
+            return false
+        }
+        if ((this.leftOperand != bo.leftOperand && this.leftOperand != this.rightOperand) ||
+            this.rightOperand != bo.leftOperand && this.rightOperand != bo.rightOperand) {
+            return false;
+        }
+        return true;
+    }
+}
+
+//除法算式类
+class DivBinaryOperation extends BinaryOperation {
+    constructor() {
+        super();
+        this.operator = "÷";
+    }
+
+    generateBinaryOperation() {
+        let failureCount = 0;
+        while (true) {
+            this.leftOperand = this.generateRandom();
+            this.rightOperand = this.generateRandom();
+            while (this.leftOperand % this.rightOperand != 0 || this.leftOperand < this.rightOperand) {
+                this.leftOperand = this.generateRandom();
+                this.rightOperand = this.generateRandom();
+            }
+            this.calculate();
+            if (this.checkingCalculation() == true) {
+                return this;
+            } else {
+                failureCount++;
+                if (failureCount > 100)
+                    throw new Error("数字范围设置错误");
+            }
+        }
+    }
+
+    calculate() {
+        this.value = this.leftOperand / this.rightOperand;
     }
 
     equals(bo) {
@@ -119,18 +183,7 @@ class Exercise {
 
     //产生一个随机的算式对象
     generateBinaryExercise() {
-        let operation;
-        if (Math.round(Math.random()) == 1) {
-            operation = new AddBinaryOperation();
-        } else {
-            operation = new SubBinaryOperation();
-        }
-        operation.operandUpper = this.operandUpper;
-        operation.operandLower = this.operandLower;
-        operation.valueLower = this.valueLower;
-        operation.valueUpper = this.valueUpper;
-        operation.generateBinaryOperation();
-        return operation;
+        console.log("override this function, function name generateBinaryExercise");
     }
 
     //将算式对象添加到算式对象数组
@@ -207,6 +260,112 @@ class SubExercise extends Exercise {
     generateBinaryExercise() {
         let operation;
         operation = new SubBinaryOperation();
+        operation.operandUpper = this.operandUpper;
+        operation.operandLower = this.operandLower;
+        operation.valueLower = this.valueLower;
+        operation.valueUpper = this.valueUpper;
+        operation.generateBinaryOperation();
+        return operation;
+    }
+}
+
+//纯乘法练习类
+class MulExercise extends Exercise {
+    constructor(num) {
+        super(num);
+    }
+
+    generateBinaryExercise() {
+        let operation;
+        operation = new MulBinaryOperation();
+        operation.operandUpper = this.operandUpper;
+        operation.operandLower = this.operandLower;
+        operation.valueLower = this.valueLower;
+        operation.valueUpper = this.valueUpper;
+        operation.generateBinaryOperation();
+        return operation;
+    }
+}
+
+//纯除法练习类
+class DivExercise extends Exercise {
+    constructor(num) {
+        super(num);
+    }
+
+    generateBinaryExercise() {
+        let operation;
+        operation = new DivBinaryOperation();
+        operation.operandUpper = this.operandUpper;
+        operation.operandLower = this.operandLower;
+        operation.valueLower = this.valueLower;
+        operation.valueUpper = this.valueUpper;
+        operation.generateBinaryOperation();
+        return operation;
+    }
+}
+
+//加减混合练习类
+class AddSubExercise extends Exercise {
+    constructor(num) {
+        super(num);
+    }
+
+    generateBinaryExercise() {
+        let operation;
+        if (Math.round(Math.random()) == 1) {
+            operation = new AddBinaryOperation();
+        } else {
+            operation = new SubBinaryOperation();
+        }
+        operation.operandUpper = this.operandUpper;
+        operation.operandLower = this.operandLower;
+        operation.valueLower = this.valueLower;
+        operation.valueUpper = this.valueUpper;
+        operation.generateBinaryOperation();
+        return operation;
+    }
+}
+
+//乘除混合练习类
+class MulDivExercise extends Exercise {
+    constructor(num) {
+        super(num);
+    }
+
+    generateBinaryExercise() {
+        let operation;
+        if (Math.round(Math.random()) == 1) {
+            operation = new MulBinaryOperation();
+        } else {
+            operation = new DivBinaryOperation();
+        }
+        operation.operandUpper = this.operandUpper;
+        operation.operandLower = this.operandLower;
+        operation.valueLower = this.valueLower;
+        operation.valueUpper = this.valueUpper;
+        operation.generateBinaryOperation();
+        return operation;
+    }
+}
+
+//加减乘除混合联系类
+class AllMixSubExercise extends Exercise {
+    constructor(num) {
+        super(num);
+    }
+
+    generateBinaryExercise() {
+        let operation;
+        let randomNum = Math.floor((Math.random() * 4));
+        let funcArray = new Array
+        (
+            "AddBinaryOperation",
+            "SubBinaryOperation",
+            "MulBinaryOperation",
+            "DivBinaryOperation"
+        );
+        operation = eval("new "+funcArray[randomNum] + "()");
         operation.operandUpper = this.operandUpper;
         operation.operandLower = this.operandLower;
         operation.valueLower = this.valueLower;

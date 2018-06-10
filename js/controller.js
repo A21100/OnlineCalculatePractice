@@ -45,7 +45,11 @@ function clickGenerateExercise() {
     var functionMap = new Map([
         ['all-add', 'genAllAddExercise'],
         ['all-sub', 'genAllSubExercise'],
-        ['add-and-sub', 'genMixExercise']
+        ['all-mul', 'genAllMulExercise'],
+        ['all-div', 'genAllDivExercise'],
+        ['add-and-sub', 'genAddSubExercise'],
+        ['mul-and-div', 'genMulDivExercise'],
+        ['all-mix','genAllMixExercise']
     ]);
     var radioButtons = document.getElementsByClassName("type-select");
     var radioButtonValue;
@@ -69,20 +73,26 @@ function clickGenerateExercise() {
         var questions = exercise.present();
         questionsContainer.innerHTML = questions;
         subBtnContainer.innerHTML += "<button class=\"btn btn-primary btn-lg btn-block\" type=\"button\" id=\"btn-sub-exercise\">提交试题</button>";
-
-        var btnSubExercise = document.getElementById("btn-sub-exercise");
-        var btnDownload = document.getElementById("btn-download");
-        btnSubExercise.onclick = function () {
-            return clickCheckExercise();
-        }
-        btnDownload.style.display = "block";
-        btnDownload.onclick = function () {
-            return downloadExercise();
-        }
     } catch (error) {
         alert(error);
     }
 
+    var btnSubExercise = document.getElementById("btn-sub-exercise");
+    var btnDownload = document.getElementById("btn-download");
+    var btnReturn = document.getElementById("btn-return");
+    btnSubExercise.onclick = function () {
+        return clickCheckExercise();
+    }
+    btnDownload.style.display = "block";
+    btnDownload.onclick = function () {
+        return downloadExercise();
+    }
+    btnReturn.onclick = function () {
+        questionsContainer.innerHTML = "";
+        subBtnContainer.innerHTML = "";
+        btnDownload.style.display = "none";
+        settings.hidden = false;
+    }
 }
 
 function clickCheckExercise() {
@@ -124,8 +134,8 @@ function clickCheckExercise() {
     }
 }
 
-function genMixExercise(count) {
-    exercise = new Exercise(count);
+function genAllMixExercise(count) {
+    exercise = new AllMixSubExercise(count);
     return exercise;
 }
 
@@ -136,6 +146,26 @@ function genAllAddExercise(count) {
 
 function genAllSubExercise(count) {
     exercise = new SubExercise(count);
+    return exercise;
+}
+
+function genAllMulExercise(count) {
+    exercise = new MulExercise(count);
+    return exercise;
+}
+
+function genAllDivExercise(count) {
+    exercise = new DivExercise(count);
+    return exercise;
+}
+
+function genAddSubExercise(count) {
+    exercise = new AddSubExercise(count);
+    return exercise;
+}
+
+function genMulDivExercise(count) {
+    exercise = new MulDivExercise(count);
     return exercise;
 }
 
