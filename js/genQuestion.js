@@ -48,12 +48,14 @@ class BinaryOperation {
         }
     }
 
-    present(content, num) {
-        content.innerHTML += "        <div class=\"question col-md-4\">\n" +
+    present(num) {
+        var rawHtml = "";
+        rawHtml += "        <div class=\"question col-md-4\">\n" +
             "            <label for=\"question" + num + "\" class=\"col-4 text-right\">" + this.leftOperand + this.operator + this.rightOperand + "=" + "</label>\n" +
             "            <input type=\"text\" class=\"col-4 text-left\" id=\"question" + num + "\">\n" +
             "            <span class=\"col-1\">✓</span>\n" +
             "        </div>"
+        return rawHtml;
     }
 }
 
@@ -163,10 +165,12 @@ class Exercise {
     }
 
     //展现
-    present(content) {
+    present() {
+        var rawHtml = "";
         for (let i = 0; i < this.operationList.length; i++) {
-            this.operationList[i].present(content, i);
+            rawHtml += this.operationList[i].present(i);
         }
+        return rawHtml;
     }
 
     debugPresent() {

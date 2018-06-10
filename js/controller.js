@@ -39,7 +39,8 @@ function clickGenerateExercise() {
     var questionCount = parseInt(document.getElementById("question-count").value);
     var subBtnContainer = document.getElementById("subbutton-container");
     var settings = document.getElementById("exercise-settings");
-    var questions = document.getElementById("questions");
+    var questionsContainer = document.getElementById("questions");
+
     //表驱动
     var functionMap = new Map([
         ['all-add', 'genAllAddExercise'],
@@ -65,7 +66,8 @@ function clickGenerateExercise() {
         exercise.generateExercise();
 
         settings.hidden = true;
-        exercise.present(questions);
+        var questions = exercise.present();
+        questionsContainer.innerHTML = questions;
         subBtnContainer.innerHTML += "<button class=\"btn btn-primary btn-lg btn-block\" type=\"button\" id=\"btn-sub-exercise\">提交试题</button>";
 
         var btnSubExercise = document.getElementById("btn-sub-exercise");
