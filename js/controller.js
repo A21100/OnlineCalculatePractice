@@ -49,7 +49,7 @@ function clickGenerateExercise() {
         ['all-div', 'genAllDivExercise'],
         ['add-and-sub', 'genAddSubExercise'],
         ['mul-and-div', 'genMulDivExercise'],
-        ['all-mix','genAllMixExercise']
+        ['all-mix', 'genAllMixExercise']
     ]);
     var radioButtons = document.getElementsByClassName("type-select");
     var radioButtonValue;
@@ -73,13 +73,14 @@ function clickGenerateExercise() {
         var questions = exercise.present();
         questionsContainer.innerHTML = questions;
         subBtnContainer.innerHTML += "<button class=\"btn btn-primary btn-lg btn-block\" type=\"button\" id=\"btn-sub-exercise\">提交试题</button>";
-    } catch (error) {
+    } catch {
         alert(error);
     }
 
     var btnSubExercise = document.getElementById("btn-sub-exercise");
     var btnDownload = document.getElementById("btn-download");
     var btnReturn = document.getElementById("btn-return");
+    var alertContainner = document.getElementById("alerts-container");
     btnSubExercise.onclick = function () {
         return clickCheckExercise();
     }
@@ -90,6 +91,7 @@ function clickGenerateExercise() {
     btnReturn.onclick = function () {
         questionsContainer.innerHTML = "";
         subBtnContainer.innerHTML = "";
+        alertContainner.innerHTML = "";
         btnDownload.style.display = "none";
         settings.hidden = false;
     }

@@ -3,6 +3,8 @@
 
 这个项目是课程作业，用了ES6语法和面向对象技术。
 
+[示范地址](http://zhpjy.github.io/OnlineCalculatePractice/index.html)
+
 ### 功能
 
 - 用户可以选择加法、减法和混合三种算式
