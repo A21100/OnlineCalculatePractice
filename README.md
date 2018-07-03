@@ -3,6 +3,8 @@
 
 这个项目是课程作业，用了ES6语法和面向对象技术。
 
+支持的浏览器：Microsoft Edge, Google Chrome
+
 [示范地址](http://zhpjy.github.io/OnlineCalculatePractice/index.html)
 
 ### 功能

@@ -25,7 +25,7 @@ function downloadExercise() {
                 j = -1;
             }
         }
-        pdfMake.createPdf(data).download("questions");
+        pdfMake.createPdf(data).download("questions.pdf");
     } catch (error) {
         console.log(error.stack);
     }
@@ -73,7 +73,7 @@ function clickGenerateExercise() {
         var questions = exercise.present();
         questionsContainer.innerHTML = questions;
         subBtnContainer.innerHTML += "<button class=\"btn btn-primary btn-lg btn-block\" type=\"button\" id=\"btn-sub-exercise\">提交试题</button>";
-    } catch {
+    } catch (error) {
         alert(error);
     }
 
